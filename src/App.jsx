@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import DictionaryCard from "./components/DictionaryCard";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 export default function App() {
   const [word, setWord] = useState("");
@@ -44,6 +45,7 @@ export default function App() {
   const startListening = () => {
     if (recognitionRef.current) {
       setListening(true);
+      setResult(null);
       recognitionRef.current.start();
     }
   };
@@ -69,7 +71,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen p-4 max-w-md mx-auto bg-white text-black">
+    <div className="max-h-screen p-4 max-w-ld mx-auto bg-white text-black" style={{height: "100vh"}}>
       <h1 className="text-5xl font-bold mb-4 text-center mt-5 mb-10">
         📘 Dictionary
       </h1>
@@ -111,9 +113,23 @@ export default function App() {
 
       </form>
 
+
+
       {listening && (
         <p className="text-center text-blue-600 mb-4 animate-pulse">
-          Listening...
+          <DotLottieReact
+            src="https://lottie.host/a156a57b-4f29-4d1c-800d-519fef987983/2WYW4bimf6.lottie"
+            loop
+            autoplay
+            style={{
+              position: "absolute",
+              top:"50%",
+              width: "200px",
+              height: "200px",
+              left: "50%",
+              transform: "translate(-50%,0)"
+            }}
+          />
         </p>
       )}
 
